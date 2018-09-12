@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		83540771214944340079C1CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83540770214944340079C1CD /* AppDelegate.swift */; };
-		83540773214944340079C1CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83540772214944340079C1CD /* ViewController.swift */; };
 		83540776214944340079C1CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83540774214944340079C1CD /* Main.storyboard */; };
 		83540778214944350079C1CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83540777214944350079C1CD /* Assets.xcassets */; };
 		8354077B214944350079C1CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83540779214944350079C1CD /* LaunchScreen.storyboard */; };
+		835407832149449B0079C1CD /* PhotoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835407822149449B0079C1CD /* PhotoTableViewController.swift */; };
+		83540785214944DB0079C1CD /* ClassicPhotosDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83540784214944DB0079C1CD /* ClassicPhotosDictionary.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8354076D214944340079C1CD /* Project 09 OnlinePhotoCell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project 09 OnlinePhotoCell.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83540770214944340079C1CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		83540772214944340079C1CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		83540775214944340079C1CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		83540777214944350079C1CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8354077A214944350079C1CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8354077C214944350079C1CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		835407822149449B0079C1CD /* PhotoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewController.swift; sourceTree = "<group>"; };
+		83540784214944DB0079C1CD /* ClassicPhotosDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ClassicPhotosDictionary.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +57,9 @@
 			isa = PBXGroup;
 			children = (
 				83540770214944340079C1CD /* AppDelegate.swift */,
-				83540772214944340079C1CD /* ViewController.swift */,
 				83540774214944340079C1CD /* Main.storyboard */,
+				835407822149449B0079C1CD /* PhotoTableViewController.swift */,
+				83540784214944DB0079C1CD /* ClassicPhotosDictionary.plist */,
 				83540777214944350079C1CD /* Assets.xcassets */,
 				83540779214944350079C1CD /* LaunchScreen.storyboard */,
 				8354077C214944350079C1CD /* Info.plist */,
@@ -122,6 +125,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83540785214944DB0079C1CD /* ClassicPhotosDictionary.plist in Resources */,
 				8354077B214944350079C1CD /* LaunchScreen.storyboard in Resources */,
 				83540778214944350079C1CD /* Assets.xcassets in Resources */,
 				83540776214944340079C1CD /* Main.storyboard in Resources */,
@@ -135,7 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83540773214944340079C1CD /* ViewController.swift in Sources */,
+				835407832149449B0079C1CD /* PhotoTableViewController.swift in Sources */,
 				83540771214944340079C1CD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +287,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QUVTA8Q65R;
 				INFOPLIST_FILE = "Project 09 OnlinePhotoCell/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -301,6 +306,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QUVTA8Q65R;
 				INFOPLIST_FILE = "Project 09 OnlinePhotoCell/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
