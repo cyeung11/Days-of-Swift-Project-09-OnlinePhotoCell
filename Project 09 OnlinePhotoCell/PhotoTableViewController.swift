@@ -9,87 +9,101 @@
 import UIKit
 
 class PhotoTableViewController: UITableViewController {
-
+    
+    let plistURL = "https://raw.githubusercontent.com/cyeung11/Days-of-Swift-Project-09-OnlinePhotoCell/master/Project%2009%20OnlinePhotoCell/ClassicPhotosDictionary.plist"
+    
+    var titles = [String]()
+    var photoSource = [String: UIImage]()
+    var dataSource = [String: String](){
+        didSet{
+            titles = Array(dataSource.keys)
+            for (title, _) in photoSource{
+                if !dataSource.keys.contains(title){
+                    photoSource.removeValue(forKey: title)
+                }
+            }
+            for (title, _) in dataSource{
+                if !photoSource.keys.contains(title){
+                    photoSource[title] = #imageLiteral(resourceName: "placeholder")
+                }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.allowsSelection = false
+        //get plist from url
+        if let url = URL(string: plistURL){
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            let session = URLSession(configuration: .default).dataTask(with: url) { [weak self] (data, response, error) in
+                
+                if error != nil || data == nil {
+                    let alert = UIAlertController(title: "Loading Error", message: "Fail to load data from Internet", preferredStyle: .alert)
+                    self?.show(alert, sender: nil)
+                }
+                if let dictionary = try? PropertyListSerialization.propertyList(from: data!, options: PropertyListSerialization.ReadOptions(rawValue: 0), format: nil) as? [String: String],
+                    let dictionary1 = dictionary{
+                    self?.dataSource = dictionary1
+                    DispatchQueue.main.async { [weak self] in
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        self?.tableView.reloadData()
+                    }
+                }
+            }
+            session.resume()
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return titles.count
     }
-
-    /*
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        PhotoOperationQuene.quene.isSuspended = true
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        PhotoOperationQuene.quene.isSuspended = false
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75.0
+    }
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let cellTitle = titles[indexPath.row]
+        
+        cell.textLabel?.text = cellTitle
+        cell.imageView?.contentMode = .scaleAspectFill
+        cell.imageView?.image = photoSource[cellTitle]
+        
+        if cell.imageView?.image == nil || cell.imageView?.image == #imageLiteral(resourceName: "placeholder"){
+            let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+            cell.accessoryView = indicator
+            indicator.startAnimating()
+            let operation = PhotoOperation(withImagePath: dataSource[cellTitle]!,
+                                           forIndexPath: indexPath) { [weak self] (image) in
+                                            self?.photoSource[cellTitle] = image != nil ? image! : #imageLiteral(resourceName: "error")
+                                            self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            PhotoOperationQuene.quene.addOperation(operation)
+        } else {
+            cell.accessoryView = nil
+        }
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
+    
 }

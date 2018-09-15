@@ -13,6 +13,8 @@
 		8354077B214944350079C1CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83540779214944350079C1CD /* LaunchScreen.storyboard */; };
 		835407832149449B0079C1CD /* PhotoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835407822149449B0079C1CD /* PhotoTableViewController.swift */; };
 		83540785214944DB0079C1CD /* ClassicPhotosDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83540784214944DB0079C1CD /* ClassicPhotosDictionary.plist */; };
+		83540787214945810079C1CD /* PhotoOperationQuene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83540786214945810079C1CD /* PhotoOperationQuene.swift */; };
+		83540789214947F20079C1CD /* PhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83540788214947F20079C1CD /* PhotoOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		8354077C214944350079C1CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		835407822149449B0079C1CD /* PhotoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewController.swift; sourceTree = "<group>"; };
 		83540784214944DB0079C1CD /* ClassicPhotosDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ClassicPhotosDictionary.plist; sourceTree = "<group>"; };
+		83540786214945810079C1CD /* PhotoOperationQuene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOperationQuene.swift; sourceTree = "<group>"; };
+		83540788214947F20079C1CD /* PhotoOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				83540774214944340079C1CD /* Main.storyboard */,
 				835407822149449B0079C1CD /* PhotoTableViewController.swift */,
 				83540784214944DB0079C1CD /* ClassicPhotosDictionary.plist */,
+				83540786214945810079C1CD /* PhotoOperationQuene.swift */,
+				83540788214947F20079C1CD /* PhotoOperation.swift */,
 				83540777214944350079C1CD /* Assets.xcassets */,
 				83540779214944350079C1CD /* LaunchScreen.storyboard */,
 				8354077C214944350079C1CD /* Info.plist */,
@@ -140,6 +146,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				835407832149449B0079C1CD /* PhotoTableViewController.swift in Sources */,
+				83540787214945810079C1CD /* PhotoOperationQuene.swift in Sources */,
+				83540789214947F20079C1CD /* PhotoOperation.swift in Sources */,
 				83540771214944340079C1CD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
