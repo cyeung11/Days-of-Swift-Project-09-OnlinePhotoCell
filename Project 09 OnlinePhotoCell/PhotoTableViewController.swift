@@ -10,11 +10,11 @@ import UIKit
 
 class PhotoTableViewController: UITableViewController {
     
-    let plistURL = "https://raw.githubusercontent.com/cyeung11/Days-of-Swift-Project-09-OnlinePhotoCell/master/Project%2009%20OnlinePhotoCell/ClassicPhotosDictionary.plist"
+    private let plistURL = "https://raw.githubusercontent.com/cyeung11/Days-of-Swift-Project-09-OnlinePhotoCell/master/Project%2009%20OnlinePhotoCell/ClassicPhotosDictionary.plist"
     
-    var titles = [String]()
-    var photoSource = [String: UIImage]()
-    var dataSource = [String: String](){
+    private var titles = [String]()
+    private var photoSource = [String: UIImage]()
+    private var dataSource = [String: String](){
         didSet{
             titles = Array(dataSource.keys)
             for (title, _) in photoSource{
@@ -39,7 +39,7 @@ class PhotoTableViewController: UITableViewController {
             let session = URLSession(configuration: .default).dataTask(with: url) { [weak self] (data, response, error) in
                 
                 if error != nil || data == nil {
-                    let alert = UIAlertController(title: "Loading Error", message: "Fail to load data from Internet", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Loading Error", message: "Fail to load data from the Internet", preferredStyle: .alert)
                     self?.show(alert, sender: nil)
                 }
                 if let dictionary = try? PropertyListSerialization.propertyList(from: data!, options: PropertyListSerialization.ReadOptions(rawValue: 0), format: nil) as? [String: String],
@@ -55,6 +55,10 @@ class PhotoTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        PhotoOperationQuene.quene.cancelAllOperations()
+    }
     
     // MARK: - Table view data source
     

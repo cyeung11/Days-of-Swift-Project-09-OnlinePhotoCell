@@ -11,9 +11,9 @@ import UIKit
 
 class PhotoOperation: Operation {
     
-    var image: UIImage?
-    let path: String
-    let indexPath: IndexPath
+    private var image: UIImage?
+    private let path: String
+    private let indexPath: IndexPath
     
     init(withImagePath path: String, forIndexPath indexPath: IndexPath, completionBlock: @escaping ((UIImage?) -> Void)){
         self.path = path
